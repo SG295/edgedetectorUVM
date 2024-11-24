@@ -1,28 +1,24 @@
-`ifndef ADDER_IF_SVH
-`define ADDER_IF_SVH
+`ifndef EDGEDETECTOR_IF_SVH
+`define EDGEDETECTOR_IF_SVH
 
-interface adder_if #(parameter BIT_WIDTH = 4) (input logic clk);
+interface edgedetector_if #(parameter WIDTH = 1) (input logic clk);
   logic n_rst;
 
-  logic [BIT_WIDTH - 1:0] a;
-  logic [BIT_WIDTH - 1:0] b;
-  logic carry_in;
-
-  logic [BIT_WIDTH - 1:0] sum;
-  logic overflow;
+  logic [WIDTH - 1:0] signal;
+  logic [WIDTH - 1:0] pos_edge, neg_edge;
   
   logic check = 1;
 
   modport tester
   (
-    input sum, overflow, clk,
-    output n_rst, a, b, carry_in
+    input pos_edge, neg_edge, clk,
+    output n_rst, signal
   );
 
-  modport adder
+  modport edgedet
   (
-    output sum, overflow,
-    input n_rst, a, b, carry_in, clk
+    output pos_edge, neg_edge,
+    input n_rst, signal, clk
   );
 endinterface
 

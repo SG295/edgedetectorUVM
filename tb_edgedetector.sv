@@ -1,9 +1,9 @@
 import uvm_pkg::*;
-`include "adder_Nbit.sv"
-`include "adder_if.svh"
+`include "edgedetector.sv"
+`include "edgedetector_if.svh"
 `include "test.svh"
 
-module tb_adder();
+module tb_edgedetector();
   logic clk;
 
   // generate clock
@@ -12,11 +12,11 @@ module tb_adder();
     forever #10 clk = !clk;
   end
 
-  adder_if add_if(clk);
+  edgedetector_if edge_if(clk);
 
-  adder_nbit adder(add_if.adder);
+  edgedetector edgedet(edge_if.edgedet);
   initial begin
-    uvm_config_db#(virtual adder_if)::set(null, "", "adder_vif", add_if);
+    uvm_config_db#(virtual edgedetector_if)::set(null, "", "edgedetector_vif", edge_if);
     run_test("test");
   end
 endmodule
