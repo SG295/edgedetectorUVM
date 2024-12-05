@@ -1,7 +1,7 @@
 `ifndef ADDER_IF_SVH
 `define ADDER_IF_SVH
 
-interface adder_if #(parameter BIT_WIDTH = 4) (input logic clk);
+interface edgedetector_if #(parameter BIT_WIDTH = 1) (input logic clk);
   logic n_rst;
 
   logic [BIT_WIDTH - 1:0] a;
