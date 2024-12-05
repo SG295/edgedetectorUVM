@@ -1,5 +1,5 @@
 # Variables
-TBTOP=tb_adder
+TBTOP=tb_edgedetector
 # FUSESOC=fusesoc_libraries/digital-lib/edge_detector/src/socetlib_edge_detector.sv
 
 # Name of UVM test to be run
