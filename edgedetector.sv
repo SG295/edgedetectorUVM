@@ -19,7 +19,7 @@ module edgedetector #(
 
     //flip flop behavior
     always_ff @ (posedge edge_if.clk, negedge edge_if.n_rst) begin
-        if(~nRST)
+        if(~(edge_if.n_rst))
             signal_r <= edge_if.signal;
         else 
             signal_r <= edge_if.signal;
