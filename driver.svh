@@ -26,9 +26,7 @@ class driver extends uvm_driver#(transaction);
     forever begin
       seq_item_port.get_next_item(req_item);
       DUT_reset();
-      vif.a = req_item.a;
-      vif.b = req_item.b;
-      vif.carry_in = req_item.carry_in;
+      vif.signal = req_item.signal;
       #(0.2)
       @(posedge vif.clk);
       seq_item_port.item_done();
