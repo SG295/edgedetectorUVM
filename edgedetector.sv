@@ -20,13 +20,13 @@ module edgedetector #(
     //flip flop behavior
     always_ff @ (posedge CLK, negedge nRST) begin
         if(~nRST)
-            signal_r <= signal;
+            signal_r <= edge_if.signal;
         else 
-            signal_r <= signal;
+            signal_r <= edge_if.signal;
     end
 
     //output logic
-    assign pos_edge = signal & ~signal_r;
-    assign neg_edge = ~signal & signal_r;
+    assign edge_if.pos_edge = edge_if.signal & ~signal_r;
+    assign edge_if.neg_edge = ~edge_if.signal & signal_r;
 
 endmodule
