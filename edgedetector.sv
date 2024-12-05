@@ -5,7 +5,7 @@
 // Description: Edge detector, added to socetlib by Cole Nelson 8/14/22 
 //	
 
-module socetlib_edge_detector #(
+module edgedetector #(
     parameter WIDTH = 1
 )
 (
