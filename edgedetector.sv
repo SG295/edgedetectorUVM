@@ -9,9 +9,10 @@ module edgedetector #(
     parameter WIDTH = 1
 )
 (
-    input logic CLK, nRST, 
-    input logic [WIDTH - 1:0] signal,
-    output logic [WIDTH - 1:0] pos_edge, neg_edge
+    edgedetector_if.edgedet edge_if
+    // input logic CLK, nRST, 
+    // input logic [WIDTH - 1:0] signal,
+    // output logic [WIDTH - 1:0] pos_edge, neg_edge
 );
 
     logic [WIDTH - 1 : 0] signal_r;
