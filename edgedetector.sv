@@ -18,7 +18,7 @@ module edgedetector #(
     logic [WIDTH - 1 : 0] signal_r;
 
     //flip flop behavior
-    always_ff @ (posedge CLK, negedge nRST) begin
+    always_ff @ (posedge edge_if.clk, negedge edge_if.n_rst) begin
         if(~nRST)
             signal_r <= edge_if.signal;
         else 
