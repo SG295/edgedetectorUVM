@@ -30,16 +30,14 @@ class monitor extends uvm_monitor;
       transaction tx;
       @(posedge vif.clk);
       tx = transaction#(4)::type_id::create("tx");
-      tx.a = vif.a;
-      tx.b = vif.b;
-      tx.carry_in = vif.carry_in;
+      tx.signal = vif.signal;
 
       if (!tx.input_equal(prev_tx)) begin // if new transaction has been sent
         edgedetector_ap.write(tx);
         // get outputs from DUT and send to scoreboard/comparator
 	@(posedge vif.clk)
-        tx.result_sum = vif.sum;
-        tx.result_overflow = vif.overflow;
+        tx.result_pos_edge = vif.pos_edge;
+        tx.result_neg_edge = vif.neg_edge;
         result_ap.write(tx);
         prev_tx.copy(tx);
       end
