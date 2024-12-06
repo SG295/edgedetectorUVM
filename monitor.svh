@@ -31,6 +31,7 @@ class monitor extends uvm_monitor;
       @(posedge vif.clk);
       tx = transaction#(4)::type_id::create("tx");
       tx.signal = vif.signal;
+      tx.signal_r = vif.signal_r;
 
       if (!tx.input_equal(prev_tx)) begin // if new transaction has been sent
         edgedetector_ap.write(tx);

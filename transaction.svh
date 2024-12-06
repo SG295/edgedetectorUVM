@@ -5,11 +5,12 @@ import uvm_pkg::*;
 `include "uvm_macros.svh"
 
 class transaction #(parameter NUM_BITS = 1) extends uvm_sequence_item;
-  rand bit [NUM_BITS - 1:0] signal;
+  rand bit [NUM_BITS - 1:0] signal, signal_r;
   bit [NUM_BITS - 1:0] pos_edge, neg_edge;
 
   `uvm_object_utils_begin(transaction)
     `uvm_field_int(signal, UVM_NOCOMPARE)
+    `uvm_field_int(signal_r, UVM_NOCOMPARE) // CHECK THIS
     `uvm_field_int(pos_edge, UVM_DEFAULT)
     `uvm_field_int(neg_edge, UVM_DEFAULT)
   `uvm_object_utils_end
@@ -23,7 +24,7 @@ class transaction #(parameter NUM_BITS = 1) extends uvm_sequence_item;
   // if two transactions are the same, return 1
   function int input_equal(transaction tx);
     int result;
-    if((signal == tx.signal)) begin
+    if((signal == tx.signal) && (signal_r == tx.signal_r)) begin // CHECK THIS
       result = 1;
       return result;
     end
